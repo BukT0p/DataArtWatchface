@@ -20,13 +20,13 @@
                 android:resource="@xml/watch_face" />
             <meta-data
                 android:name="com.google.android.wearable.watchface.preview"
-                android:resource="@drawable/bg" />
+                android:resource="@drawable/original" />
             <meta-data
                 android:name="com.google.android.wearable.watchface.preview_circular"
-                android:resource="@drawable/bg" />
+                android:resource="@drawable/original" />
             <meta-data
                 android:name="com.google.android.wearable.watchface.companionConfigurationAction"
-                android:value="com.example.android.wearable.watchface.CONFIG_ANALOG" />
+                android:value="com.dataart.dataartwatchface.CONFIG_DATAART_WATCHFACE" />
 
             <intent-filter>
                 <action android:name="android.service.wallpaper.WallpaperService" />
