@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">DataArtWatchface</string>
+    <string name="watchface_name">DataArt</string>
+</resources>
