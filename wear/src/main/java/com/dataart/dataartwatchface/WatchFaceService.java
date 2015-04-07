@@ -28,6 +28,7 @@ public class WatchFaceService extends CanvasWatchFaceService {
     private static final String TAG = "WatchFaceService";
     private static final long INTERACTIVE_UPDATE_RATE_MS = TimeUnit.SECONDS.toMillis(1);
     private static final SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.ENGLISH);
+    private static final SimpleDateFormat monthFormat = new SimpleDateFormat("MMM", Locale.ENGLISH);
     private static final SimpleDateFormat dayOfWeekFormat = new SimpleDateFormat("EEE", Locale.ENGLISH);
 
     @Override
@@ -47,8 +48,8 @@ public class WatchFaceService extends CanvasWatchFaceService {
          * disable anti-aliasing in ambient mode.
          */
         boolean isLowBitAmbient;
-        private Bitmap backgroundBitmap;
-        private Bitmap backgroundScaledBitmap;
+        private Bitmap backgroundBitmap, hourBitmap, minBitmap;
+        private Bitmap backgroundScaledBitmap, hourScaledBitmap, minScaledBitmap;
 
         /**
          * Handler to update the time once a second in interactive mode.
@@ -96,6 +97,8 @@ public class WatchFaceService extends CanvasWatchFaceService {
             Resources resources = WatchFaceService.this.getResources();
             Drawable backgroundDrawable = resources.getDrawable(R.drawable.bg);
             backgroundBitmap = ((BitmapDrawable) backgroundDrawable).getBitmap();
+//            hourBitmap = ((BitmapDrawable) resources.getDrawable(R.drawable.hour_hand)).getBitmap();
+//            minBitmap = ((BitmapDrawable) resources.getDrawable(R.drawable.min_hand)).getBitmap();
 
             hourPaint = new Paint();
             hourPaint.setARGB(255, 200, 200, 200);
@@ -213,15 +216,15 @@ public class WatchFaceService extends CanvasWatchFaceService {
             float secRot = calendar.get(Calendar.SECOND) / 30f * (float) Math.PI;
             int minutes = calendar.get(Calendar.MINUTE);
             float minRot = minutes / 30f * (float) Math.PI;
-            float hrRot = ((calendar.get(Calendar.HOUR) + (minutes / 60f)) / 6f) * (float) Math.PI;
-
+            float hrRot = ((calendar.get(Calendar.HOUR_OF_DAY) + (minutes / 60f)) / 6f) * (float) Math.PI;
             float secLength = centerX - 130;
             float minLength = centerX - 40;
             float hrLength = centerX - 80;
 
-
-            textPaint.setTextSize(32.f);
-            canvas.drawText(dayFormat.format(calendar.getTime()), centerX + 4, centerY - 30, textPaint);
+            textPaint.setTextSize(24.f);
+            canvas.drawText(monthFormat.format(calendar.getTime()), centerX + 2, centerY - 50, textPaint);
+            textPaint.setTextSize(20.f);
+            canvas.drawText(dayFormat.format(calendar.getTime()), centerX + 10, centerY - 25, textPaint);
             textPaint.setTextSize(16.f);
             canvas.drawText(dayOfWeekFormat.format(calendar.getTime()), centerX + 34, centerY + 45, textPaint);
 
@@ -231,9 +234,28 @@ public class WatchFaceService extends CanvasWatchFaceService {
                 canvas.drawLine(centerX - 52, centerY + 18, centerX + secX - 52, centerY + secY + 18, secondPaint);
             }
 
+//            // Draw the background, scaled to fit.
+//            if (hourScaledBitmap == null) {
+//                hourScaledBitmap = Bitmap.createScaledBitmap(hourBitmap, 9, 80, true /* filter */);
+//            }
+//
+//            if (minScaledBitmap == null) {
+//                minScaledBitmap = Bitmap.createScaledBitmap(minBitmap, 14, 120, true /* filter */);
+//            }
+//            canvas.save();
+//            canvas.rotate((hrRot - 90), centerX, centerY);
+//            canvas.drawBitmap(hourScaledBitmap, centerX - 4, 80, null);
+//            canvas.restore();
+//            canvas.save();
+//            canvas.rotate((minRot-90), centerX, centerY);
+//            canvas.drawBitmap(minScaledBitmap, centerX - 7, 45, null);
+//            canvas.restore();
+//            Log.d(TAG, "hr Rot = "+(hrRot - 90)+" min="+(minRot-90));
+
             float minX = (float) Math.sin(minRot) * minLength;
             float minY = (float) -Math.cos(minRot) * minLength;
             canvas.drawLine(centerX, centerY, centerX + minX, centerY + minY, minutePaint);
+
 
             float hrX = (float) Math.sin(hrRot) * hrLength;
             float hrY = (float) -Math.cos(hrRot) * hrLength;
