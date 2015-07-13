@@ -193,7 +193,7 @@ public class WatchFaceService extends CanvasWatchFaceService {
             textPaint.setTextSize(28.f);
             canvas.drawText(dayFormat.format(calendar.getTime()), centerX + 4, centerY - 25, textPaint);
             textPaint.setTextSize(20.f);
-            canvas.drawText(dayOfWeekFormat.format(calendar.getTime()), centerX + 35, centerY + 45, textPaint);
+            canvas.drawText(dayOfWeekFormat.format(calendar.getTime()), centerX + 30, centerY + 40, textPaint);
             canvas.drawText(monthFormat.format(calendar.getTime()), centerX, centerY - 55, monthTextPaint);
             if (!isInAmbientMode()) {
                 float secX = (float) Math.sin(secRot) * secLength;
