@@ -85,7 +85,7 @@ public class WatchFaceService extends CanvasWatchFaceService {
                     .build());
 
             Resources resources = WatchFaceService.this.getResources();
-            Drawable backgroundDrawable = resources.getDrawable(R.drawable.bg, getTheme());
+            Drawable backgroundDrawable = resources.getDrawable(R.drawable.bg_wo, getTheme());
             if (backgroundDrawable != null) {
                 backgroundBitmap = ((BitmapDrawable) backgroundDrawable).getBitmap();
             }
@@ -193,13 +193,13 @@ public class WatchFaceService extends CanvasWatchFaceService {
             textPaint.setTextSize(28.f);
             canvas.drawText(dayFormat.format(calendar.getTime()), centerX + 4, centerY - 25, textPaint);
             textPaint.setTextSize(20.f);
-            canvas.drawText(dayOfWeekFormat.format(calendar.getTime()), centerX + 30, centerY + 40, textPaint);
-            canvas.drawText(monthFormat.format(calendar.getTime()), centerX, centerY - 55, monthTextPaint);
+            canvas.drawText(dayOfWeekFormat.format(calendar.getTime()), centerX + 32, centerY + 40, textPaint);
+            canvas.drawText(monthFormat.format(calendar.getTime()), centerX+4, centerY - 55, monthTextPaint);
             if (!isInAmbientMode()) {
                 float secX = (float) Math.sin(secRot) * secLength;
                 float secY = (float) -Math.cos(secRot) * secLength;
 
-                canvas.drawLine(centerX - 48, centerY + 15, centerX + secX - 48, centerY + secY + 15, secondPaint);
+                canvas.drawLine(centerX - 53, centerY + 18, centerX + secX - 53, centerY + secY + 18, secondPaint);
             }
             float degrees = (float) (Math.toDegrees(minRot) + 90) % 360;
             handMatrix = new Matrix();

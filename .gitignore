@@ -50,3 +50,4 @@ Optional - for older project format, add this section to your gitignore file:
 *.ipr
 *~
 *.swp
+mobile/hs_err_pid2044.log
