@@ -220,13 +220,13 @@ public class WatchFaceService extends CanvasWatchFaceService {
             handMatrix.setRotate(degrees - 180);
             Bitmap rotatedHourBmp = Bitmap.createBitmap(hourHandBmp, 0, 0, hourHandBmp.getWidth(), hourHandBmp.getHeight(), handMatrix, true);
             if (degrees <= 90) {
-                canvas.drawBitmap(rotatedHourBmp, centerX - rotatedHourBmp.getWidth() + 4, centerY - rotatedHourBmp.getHeight() + 4, null);
+                canvas.drawBitmap(rotatedHourBmp, centerX - rotatedHourBmp.getWidth() + 4, centerY - rotatedHourBmp.getHeight() + 4, new Paint());
             } else if (degrees <= 180) {
-                canvas.drawBitmap(rotatedHourBmp, centerX - 4, centerY - rotatedHourBmp.getHeight() + 4, null);
+                canvas.drawBitmap(rotatedHourBmp, centerX - 4, centerY - rotatedHourBmp.getHeight() + 4, new Paint());
             } else if (degrees <= 270) {
-                canvas.drawBitmap(rotatedHourBmp, centerX - 4, centerY - 4, null);
+                canvas.drawBitmap(rotatedHourBmp, centerX - 4, centerY - 4, new Paint());
             } else {
-                canvas.drawBitmap(rotatedHourBmp, centerX - rotatedHourBmp.getWidth() + 4, centerY - 4, null);
+                canvas.drawBitmap(rotatedHourBmp, centerX - rotatedHourBmp.getWidth() + 4, centerY - 4, new Paint());
             }
         }
 
