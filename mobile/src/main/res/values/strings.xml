@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">DataArtWatchface</string>
-    <string name="copyright">Designed by Dmitry Kozitsky\nDeveloped by Viktor Yakunin\n\nContact us @ dataart.com\nCopyright © 2015, DataArt All Rights Reserved.</string>
+    <string name="copyright">Designed by Dmitry Kozitsky\nDeveloped by Viktor Yakunin\nEugene Dubovik\n\nContact us @ dataart.com\nCopyright © 2017, DataArt All Rights Reserved.</string>
 </resources>
